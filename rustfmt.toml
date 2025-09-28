@@ -6,13 +6,13 @@ hard_tabs = true
 use_small_heuristics = "Off"
 
 reorder_imports = true
-imports_granularity = "Item"
+imports_granularity = "Crate"
 group_imports = "StdExternalCrate"
 imports_layout = "HorizontalVertical" 
 
 newline_style = "Unix"
 normalize_comments = true
 blank_lines_upper_bound = 1
-trailing_comma = "Always"
+#trailing_comma = "Always"
 binop_separator = "Front"
 reorder_modules = true

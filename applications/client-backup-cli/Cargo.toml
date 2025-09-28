@@ -1,5 +1,5 @@
 [package]
-name = "backup-ingestion-node"
+name = "client-backup-cli"
 version = "0.1.0"
 edition.workspace = true
 

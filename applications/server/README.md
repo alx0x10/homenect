@@ -20,33 +20,42 @@ All business logic lives in reusable crates under `crates/`; this project is onl
 - Docker installed on DietPi
 - SSD mounted at `/mnt/ssd/backups`
 
-### Build the image on a dev machine (for arm64)
+### Build and Run the server container
+
+Build from repo root using the app-local Dockerfile:
 
 ```bash
-docker buildx build \
-  --platform linux/arm64 \
-  -t backup-ingestion-node:latest \
-  -f applications/backup-ingestion-node/Dockerfile \
-  .
+docker build -t homenect-server:latest -f applications/server/Dockerfile .
+````
+
+Optional features:
+
+```bash
+docker build -t homenect-server:featX \
+  -f applications/server/Dockerfile \
+  --build-arg FEATURES="feat-x,feat-y"
 ```
 
-### Run on DietPi
+Run (host networking recommended for iroh):
 
 ```bash
-docker run -d \
-  --name backup-ingestion-node \
+sudo mkdir -p /srv/homenect/store && sudo chown 10001:10001 /srv/homenect/store
+
+docker run -d --name homenect \
+  --network host \
+  -e RUST_LOG="homenect=debug,iroh=info" \
+  -e HOMENECT_STORE_PATH="/data/store" \
+  -e HOMENECT_ALLOW_NODE_IDS="n0id1...,n0id2..." \
+  -v /srv/homenect/store:/data/store:rw \
   --restart unless-stopped \
-  -p 4444:4444/tcp -p 4444:4444/udp \
-  -v /mnt/ssd/backups:/mnt/ssd/backups \
-  -e BACKUP_REPOSITORY_PATH=/mnt/ssd/backups \
-  -e SERVICE_LISTEN_ADDR=0.0.0.0:4444 \
-  backup-ingestion-node:latest
+  homenect-server:latest
 ```
 
 ### Environment variables
 
-- `BACKUP_REPOSITORY_PATH` → Absolute path inside the container where backups are written (mount host SSD).
-- `SERVICE_LISTEN_ADDR` → IP:PORT to bind the QUIC endpoint.
+- `HOMENECT_STORE_PATH`: absolute path for blobs inside container, default `/data/store`.
+- `HOMENECT_ALLOW_NODE_IDS`: comma-separated allow-list of peer NodeIds, e.g. `n0abc...,n0def....`
+- `RUST_LOG`: tracing filter, default `homenect=debug,iroh=info`.
 
 ---
 

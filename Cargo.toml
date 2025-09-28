@@ -1,7 +1,7 @@
 [workspace]
 members = [
-  "applications/backup-ingestion-node",
-  "applications/backup-laptop-cli",
+  "applications/server",
+  "applications/client-backup-cli", "crates/proto-control",
 ]
 resolver = "2"
 
