@@ -1,0 +1,12 @@
+[workspace]
+members = [
+  "applications/backup-ingestion-node",
+  "applications/backup-laptop-cli",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"

@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"rust-lang.rust-analyzer",
+        "nemurubaka.cratesx",
+        "usernamehw.errorlens",
+        "tamasfe.even-better-toml",
+		"aaron-bond.better-comments",
+		"davidanson.vscode-markdownlint",
+		"eamodio.gitlens",
+		"Gruntfuggly.todo-tree",
+		"jannisx11.batch-rename-extension",
+		"streetsidesoftware.code-spell-checker",
+	]
+}

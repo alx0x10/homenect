@@ -1,0 +1,26 @@
+{
+  // use rustfmt via rust-analyzer
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "editor.rulers": [100],
+    "editor.trimAutoWhitespace": true
+  },
+
+  // ensure rust-analyzer passes our config
+  "rust-analyzer.rustfmt.extraArgs": [
+    "--config-path",
+    "${workspaceFolder}/rustfmt.toml"
+  ],
+
+  // sort imports on save
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+
+  // consistent EOLs
+  "files.eol": "\n"
+}

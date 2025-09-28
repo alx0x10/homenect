@@ -1,0 +1,60 @@
+# -------------------------
+# Rust / Cargo
+# -------------------------
+/target/
+**/target/
+Cargo.lock
+!applications/**/Cargo.lock
+
+# Rust artifacts
+*.rlib
+*.rmeta
+*.d
+*.so
+*.dll
+*.dylib
+/target/doc/
+
+# -------------------------
+# Docker
+# -------------------------
+.env
+.env.*
+*.tar
+*.oci
+# local image export or scratch dirs
+docker-run.sh
+container/
+containers/
+logs/
+**/logs/
+
+# -------------------------
+# Editors / IDE
+# -------------------------
+.idea/
+*.iml
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.history/
+*~
+*.swp
+*.swo
+.#*
+.projectile
+
+# -------------------------
+# OS files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Misc
+# -------------------------
+*.out
+*.tmp
+*.bak
+*.log
+config.local.toml
