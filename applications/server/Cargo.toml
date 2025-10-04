@@ -4,12 +4,9 @@ version = "0.1.0"
 edition.workspace = true
 
 [dependencies]
-iroh = "0.92.0"
-iroh-blobs = "0.94.0"
-snafu = "0.8.9"
-tokio = "1.47.1"
-tracing = "0.1.41"
-tracing-subscriber = { version = "0.3.20", features = ["env-filter"] }
+tokio = { version = "1.47.1", features = ["macros", "rt-multi-thread"] }
+iroh = { version = "0.92.0", default-features = false }
+iroh-blobs = { version = "0.94.0", default-features = false }
 
 proto-control = { path = "../../crates/proto-control"}
 
